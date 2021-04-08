@@ -1,11 +1,20 @@
-import json
+"""
+This sampling script is not so clear and I shall work on it in a near future.
+"""
 
+import json
 from pathlib import Path
+import argparse
+import logging
+import sys
+
+logger = logging.getLogger(__name__)
 
 
 def load_json_file(file_path):
     with open(file_path) as f:
         return json.load(f)
+
 
 ROOT_TAG = '<MODEL>'
 CLS_TAG = '<CLS>'
@@ -189,15 +198,44 @@ class Tree:
             f.write(self.tree_string)
 
 
-"""
-path = '../data/test/use_case3'
 
-with open('../data/test/use_case3/test_probing_local_context.txt', 'w+') as fout:
-    for path in Path(path).rglob('*.json'):
-        if path.is_file():
-            tree = Tree()
-            test_samples = tree.generate_contiguous_samples(load_json_file(path))
-            for sample in test_samples:
-                fout.write(sample)
-                fout.write('\n')
-"""
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_path', type=str, default=None,
+                        help='Path to a directory containing the metamodels in json files.')
+    parser.add_argument('--output_path', type=str, default=None,
+                        help='Output file where to store the samples.')
+    parser.add_argument('--sampling', type=str, default=None,
+                        help='Type of sampling (local or global)')
+    parser.add_argument('--sampling_type', type=str, default=None,
+                        help='If sampling is global, then choose what type of element to sample (cls, attrs, assocs)')
+    args = parser.parse_args()
+
+    logging.basicConfig(
+        format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
+        datefmt="%m/%d/%Y %H:%M:%S",
+        handlers=[logging.StreamHandler(sys.stdout)],
+        level="INFO"
+    )
+
+    logger.info('Generating test samples...')
+    with open(args.output_path, 'w+') as fout:
+        for path in Path(args.data_path).rglob('*.json'):
+            if path.is_file():
+                tree = Tree()
+                if args.sampling == 'local':
+                    test_samples = tree.generate_local_context_samples(load_json_file(path))
+                else:
+                    if args.sampling_type == 'cls':
+                        test_samples = tree.generate_cls_samples(load_json_file(path))
+                    elif args.sampling_type == 'attrs':
+                        test_samples = tree.generate_attrs_samples(load_json_file(path))
+                    elif args.sampling_type == 'assocs':
+                        test_samples = tree.generate_assocs_samples(load_json_file(path))
+                for sample in test_samples:
+                    fout.write(sample)
+                    fout.write('\n')
+
+
+if __name__ == '__main__':
+    main()

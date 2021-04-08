@@ -1,7 +1,12 @@
+"""
+This sampling script is not so clear and I shall work on it in a near future.
+"""
+
 import json
 import logging
 import sys
 from pathlib import Path
+import argparse
 
 from anytree import Node, RenderTree, LevelOrderIter, PreOrderIter
 from anytree.search import findall, find
@@ -286,11 +291,14 @@ def sample_generation(data):
     return test_samples
 
 
-"""
-@todo: clean sampling scripts
-"""
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_path', type=str, default=None,
+                        help='Path to a directory containing the metamodels in json files.')
+    parser.add_argument('--output_path', type=str, default=None,
+                        help='Output file where to store the samples.')
+    args = parser.parse_args()
 
-if __name__ == '__main__':
     logging.basicConfig(
         format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
         datefmt="%m/%d/%Y %H:%M:%S",
@@ -298,11 +306,9 @@ if __name__ == '__main__':
         level="INFO"
     )
 
-    base_path = '../data/test/use_case3'
     logger.info('Generating test samples...')
-
-    with open('../data/test/use_case3/test_iterative_construction.txt', 'w+') as fout:
-        for path in Path(base_path).rglob('*.json'):
+    with open(args.output_path, 'w+') as fout:
+        for path in Path(args.data_path).rglob('*.json'):
             logging.info(f'Parsing file: {path}')
             if path.is_file():
                 with open(path) as fin:
@@ -312,3 +318,7 @@ if __name__ == '__main__':
                     fout.write(sample[0] + ';' + str(sample[1]) + ';' + sample[2] + ';' + sample[3])
                     fout.write('\n')
             fout.write('\n')
+
+
+if __name__ == '__main__':
+    main()
