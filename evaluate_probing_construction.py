@@ -57,9 +57,7 @@ def main():
 
     start_time = time.time()
     for idx in tqdm(range(len(data[:100]))):
-        if data[idx] == '\n':
-            cache.clear()
-        else:
+        if data[idx] != '\n':
             sample_data = data[idx].split(';')
 
             context_size = int(sample_data[1])
