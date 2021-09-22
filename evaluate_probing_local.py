@@ -34,10 +34,6 @@ def main():
         '--pred_type', type=str, default=None,
         help='Prediction type (cls=classifiers, attrs=attributes, assocs=associations)'
     )
-    parser.add_argument(
-        '--use_cache', type=bool, default=False,
-        help='Use a cache containing the previously suggested words.'
-    )
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -58,20 +54,15 @@ def main():
     open_char = '('
     close_char = ')'
 
-    # count the occurrences of the suggestions
-    suggestion_counts = Counter()
-
-    # cache stores the previous predictions and count their occurrences
-    cache = Counter()
+    # count the occurrences of the recommendations
+    recommendations_count = Counter()
 
     n_test = 0
     accuracies = {'1': 0, '5': 0, '10': 0, '20': 0}
     mrrs = {'1': 0, '5': 0, '10': 0, '20': 0}
     start_time = time.time()
     for idx in tqdm(range(len(data))):
-        if data[idx] == '\n':
-            cache.clear()
-        else:
+        if data[idx] != '\n':
             test_sample = data[idx].split(';')
             context = test_sample[0].split()
             current_test_cls = test_sample[1].strip()
@@ -120,17 +111,7 @@ def main():
                                     accuracies[str(k)] += 1 if k > idx else 0
                                     mrrs[str(k)] += 1 / (idx + 1) if k > idx else 0
                                 found = True
-                            suggestion_counts.update([prediction])
-                            cache.update([prediction])
-
-                        # use cache if the ground truth was not found in the suggestions
-                        if args.use_cache and not found:
-                            cache_top_k = dict(cache.most_common(20))
-                            if ground_truth in cache_top_k:
-                                idx = list(cache_top_k.keys()).index(ground_truth)
-                                for k in [1, 5, 10, 20]:
-                                    accuracies[str(k)] += 1 if k > idx else 0
-                                    mrrs[str(k)] += 1 / (idx + 1) if k > idx else 0
+                            recommendations_count.update([prediction])
 
                         n_test += 1
                         # remove mask and restore current test sample
@@ -145,11 +126,11 @@ def main():
         accuracies[k] = round(accuracies[k] / n_test, 4)
         mrrs[k] = round(mrrs[k] / n_test, 4)
 
-    logger.info(f'***** Test results {"with cache" if args.use_cache else "no cache"} *****')
+    logger.info(f'***** Test results  *****')
     logger.info(f'Number of test samples: {n_test}')
     logger.info(f'R@k: {accuracies}')
     logger.info(f'MRR@k: {mrrs}')
-    logger.info(f'Most common suggestions" {suggestion_counts.most_common(10)}')
+    logger.info(f'Most common suggestions" {recommendations_count.most_common(10)}')
 
 
 if __name__ == '__main__':
