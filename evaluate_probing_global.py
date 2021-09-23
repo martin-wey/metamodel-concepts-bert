@@ -168,7 +168,7 @@ def main():
     logger.info(f'R@k: {accuracies}')
     logger.info(f'MRR@k: {mrrs}')
     logger.info(f'Most common suggestions: {recommendations_count.most_common(10)}')
-    logger.info(f'Recommendation per word count: {recommendations_per_word_count}')
+    logger.info(f'Recommendation per word count: {recommendations_occurrence}')
 
 
 if __name__ == '__main__':
