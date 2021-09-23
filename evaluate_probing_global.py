@@ -68,7 +68,15 @@ def main():
     recommendations_count = Counter()
 
     # count correct recommendation w.r.t the ground-truth occurrence in the training phase
-    recommendations_per_word_count = {}
+    recommendations_occurrence = {
+        '0-1': [0, 0],
+        '2-10': [0, 0],
+        '11-20': [0, 0],
+        '21-50': [0, 0],
+        '51-100': [0, 0],
+        '101-250': [0, 0],
+        '251+': [0, 0]
+    }
 
     n_test = 0
     accuracies = {'1': 0, '5': 0, '10': 0, '20': 0}
@@ -118,19 +126,27 @@ def main():
                             for k in [1, 5, 10, 20]:
                                 accuracies[str(k)] += 1 if k > idx else 0
                                 mrrs[str(k)] += 1 / (idx + 1) if k > idx else 0
-                                if k in [1, 5]: found = True
+                                if k in [1, 5, 10]: found = True
                         recommendations_count.update([prediction])
 
-                    if '0' not in recommendations_per_word_count:
-                        recommendations_per_word_count['0'] = [0, 0]
-                    word_occurrence = '0'
-                    if ground_truth in vocab:
-                        word_occurrence = str(vocab[ground_truth])
-                        if str(vocab[ground_truth]) not in recommendations_per_word_count:
-                            recommendations_per_word_count[str(vocab[ground_truth])] = [0, 0]
+                    word_occurrence = vocab[ground_truth] if ground_truth in vocab else 0
+                    if word_occurrence in [0, 1]:
+                        key = '0-1'
+                    elif 2 <= word_occurrence <= 10:
+                        key = '2-10'
+                    elif 11 <= word_occurrence <= 20:
+                        key = '11-20'
+                    elif 21 <= word_occurrence <= 50:
+                        key = '21-50'
+                    elif 51 <= word_occurrence <= 100:
+                        key = '51-100'
+                    elif 101 <= word_occurrence <= 250:
+                        key = '101-250'
+                    else:
+                        key = '251+'
                     if found:
-                        recommendations_per_word_count[word_occurrence][0] += 1
-                    recommendations_per_word_count[word_occurrence][1] += 1
+                        recommendations_occurrence[key][0] += 1
+                    recommendations_occurrence[key][1] += 1
 
                     n_test += 1
                     # remove mask and restore current test sample
@@ -144,8 +160,8 @@ def main():
         accuracies[k] = round(accuracies[k] / n_test, 4)
         mrrs[k] = round(mrrs[k] / n_test, 4)
 
-    for word in recommendations_per_word_count:
-        recommendations_per_word_count[word][0] /= recommendations_per_word_count[word][1]
+    for key in recommendations_occurrence:
+        recommendations_occurrence[key][0] /= recommendations_occurrence[key][1]
 
     logger.info(f'***** Test results *****')
     logger.info(f'Number of test samples: {n_test}')
