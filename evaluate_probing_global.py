@@ -31,6 +31,10 @@ def main():
         help='The test data file (a text file).'
     )
     parser.add_argument(
+        '--train_vocab_file', type=str, default=None,
+        help='Path to the training vocabulary with word occurrences (a text file).'
+    )
+    parser.add_argument(
         '--pred_type', type=str, default=None,
         help='Prediction type (cls=classifiers, attrs=attributes, assocs=associations)'
     )
@@ -46,8 +50,14 @@ def main():
     tokenizer = RobertaTokenizerFast.from_pretrained(args.tokenizer_path)
     model = RobertaForMaskedLM.from_pretrained(args.model_path).cuda()
 
-    with open(args.test_file) as fin:
-        data = fin.readlines()
+    vocab = {}
+    with open(args.train_vocab_file) as f:
+        for line in f.readlines():
+            word_data = line.split(';')
+            vocab[word_data[0]] = int(word_data[1].strip())
+
+    with open(args.test_file) as f:
+        data = f.readlines()
 
     # test_type = 'cls' or 'attrs' or 'assocs'
     test_type = args.pred_type
@@ -56,6 +66,9 @@ def main():
 
     # count the occurrences of the recommendations
     recommendations_count = Counter()
+
+    # count correct recommendation w.r.t the ground-truth occurrence in the training phase
+    recommendations_per_word_count = {}
 
     n_test = 0
     accuracies = {'1': 0, '5': 0, '10': 0, '20': 0}
@@ -96,13 +109,28 @@ def main():
 
                     logger.debug(f'Ground truth: {ground_truth}')
                     logger.debug(f'Suggestions: {[tokenizer.decode([token]).strip() for token in top_k_tokens]}')
+
+                    found = False
                     for idx, token in enumerate(top_k_tokens):
                         prediction = tokenizer.decode([token]).strip()
+
                         if prediction == ground_truth:
                             for k in [1, 5, 10, 20]:
                                 accuracies[str(k)] += 1 if k > idx else 0
                                 mrrs[str(k)] += 1 / (idx + 1) if k > idx else 0
+                                if k in [1, 5]: found = True
                         recommendations_count.update([prediction])
+
+                    if '0' not in recommendations_per_word_count:
+                        recommendations_per_word_count['0'] = [0, 0]
+                    word_occurrence = '0'
+                    if ground_truth in vocab:
+                        word_occurrence = str(vocab[ground_truth])
+                        if str(vocab[ground_truth]) not in recommendations_per_word_count:
+                            recommendations_per_word_count[str(vocab[ground_truth])] = [0, 0]
+                    if found:
+                        recommendations_per_word_count[word_occurrence][0] += 1
+                    recommendations_per_word_count[word_occurrence][1] += 1
 
                     n_test += 1
                     # remove mask and restore current test sample
@@ -116,11 +144,15 @@ def main():
         accuracies[k] = round(accuracies[k] / n_test, 4)
         mrrs[k] = round(mrrs[k] / n_test, 4)
 
+    for word in recommendations_per_word_count:
+        recommendations_per_word_count[word][0] /= recommendations_per_word_count[word][1]
+
     logger.info(f'***** Test results *****')
     logger.info(f'Number of test samples: {n_test}')
     logger.info(f'R@k: {accuracies}')
     logger.info(f'MRR@k: {mrrs}')
-    logger.info(f'Most common suggestions" {recommendations_count.most_common(10)}')
+    logger.info(f'Most common suggestions: {recommendations_count.most_common(10)}')
+    logger.info(f'Recommendation per word count: {recommendations_per_word_count}')
 
 
 if __name__ == '__main__':
