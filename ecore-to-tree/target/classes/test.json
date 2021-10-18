@@ -1,0 +1,82 @@
+{
+	"root": "<MODEL>",
+	"children": [
+		{
+			"root": "<CLS>",
+			"name": "Task",
+			"attrs": [
+				{
+					"EString": "name"
+				},
+				{
+					"Status": "status"
+				},
+				{
+					"Importance": "importanceLevel"
+				},
+				{
+					"EString": "description"
+				},
+				{
+					"ELong": "id"
+				}
+			],
+			"assocs": [
+				{
+					"Folder": "parentFolders"
+				}
+			]
+		},
+		{
+			"root": "<CLS>",
+			"name": "Folder",
+			"attrs": [
+				{
+					"EString": "name"
+				},
+				{
+					"ELong": "id"
+				}
+			],
+			"assocs": [
+				{
+					"Task": "tasks"
+				},
+				{
+					"Folder": "subFolders"
+				},
+				{
+					"Folder": "parent"
+				}
+			]
+		},
+		{
+			"root": "<CLS>",
+			"name": "ToDoListManager",
+			"attrs": [
+			],
+			"assocs": [
+				{
+					"Folder": "rootFolder"
+				},
+				{
+					"FolderManagerListener": "folderManagerListener"
+				},
+				{
+					"Folder": "folders"
+				},
+				{
+					"Task": "tasks"
+				}
+			]
+		},
+		{
+			"root": "<CLS>",
+			"name": "FolderManagerListener",
+			"attrs": [
+			],
+			"assocs": [
+			]
+		}
+	]
+}

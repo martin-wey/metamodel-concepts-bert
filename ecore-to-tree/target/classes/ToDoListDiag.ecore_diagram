@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_Bb6BACWjEeuNT-t1D26kBA" type="Ecore" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_B0FQcCWjEeuNT-t1D26kBA" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0HFoCWjEeuNT-t1D26kBA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0HssCWjEeuNT-t1D26kBA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0HssSWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0HssiWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0ITwCWjEeuNT-t1D26kBA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0ITwSWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0ITwiWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0ITwyWjEeuNT-t1D26kBA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0ITxCWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0ITxSWjEeuNT-t1D26kBA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="ToDoListDiag.ecore#//Task"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0FQcSWjEeuNT-t1D26kBA" x="819" y="555"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_B0ITxiWjEeuNT-t1D26kBA" type="2005" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0ITyCWjEeuNT-t1D26kBA" type="5005"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0ITySWjEeuNT-t1D26kBA" type="7011">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0ITyiWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0ITyyWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0ITzCWjEeuNT-t1D26kBA" type="7012">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0ITzSWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0ITziWjEeuNT-t1D26kBA"/>
+    </children>
+    <element xmi:type="ecore:EEnum" href="ToDoListDiag.ecore#//Status"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0ITxyWjEeuNT-t1D26kBA" x="531" y="90"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_B0I60CWjEeuNT-t1D26kBA" type="2005" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0I60iWjEeuNT-t1D26kBA" type="5005"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0I60yWjEeuNT-t1D26kBA" type="7011">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0I61CWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0I61SWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0I61iWjEeuNT-t1D26kBA" type="7012">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0I61yWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0I62CWjEeuNT-t1D26kBA"/>
+    </children>
+    <element xmi:type="ecore:EEnum" href="ToDoListDiag.ecore#//Importance"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0I60SWjEeuNT-t1D26kBA" x="715" y="90"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_B0I62SWjEeuNT-t1D26kBA" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0I62yWjEeuNT-t1D26kBA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0I63CWjEeuNT-t1D26kBA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0I63SWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0I63iWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0I63yWjEeuNT-t1D26kBA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0I64CWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0I64SWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0I64iWjEeuNT-t1D26kBA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0Jh4CWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0Jh4SWjEeuNT-t1D26kBA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="ToDoListDiag.ecore#//Folder"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0I62iWjEeuNT-t1D26kBA" x="817" y="357"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_B0Jh4iWjEeuNT-t1D26kBA" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0Jh5CWjEeuNT-t1D26kBA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0Jh5SWjEeuNT-t1D26kBA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0Jh5iWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0Jh5yWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0Jh6CWjEeuNT-t1D26kBA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0Jh6SWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0Jh6iWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0Jh6yWjEeuNT-t1D26kBA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0Jh7CWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0Jh7SWjEeuNT-t1D26kBA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="ToDoListDiag.ecore#//ToDoListManager"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0Jh4yWjEeuNT-t1D26kBA" x="870" y="90"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_B0Jh7iWjEeuNT-t1D26kBA" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0Jh8CWjEeuNT-t1D26kBA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0Jh8SWjEeuNT-t1D26kBA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0Jh8iWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0Jh8yWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0Jh9CWjEeuNT-t1D26kBA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0Jh9SWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0Jh9iWjEeuNT-t1D26kBA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0KI8CWjEeuNT-t1D26kBA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0KI8SWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0KI8iWjEeuNT-t1D26kBA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="ToDoListDiag.ecore#//FolderManagerListener"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0Jh7yWjEeuNT-t1D26kBA" x="1032" y="357"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_B0KI8yWjEeuNT-t1D26kBA" type="2004" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0KI9SWjEeuNT-t1D26kBA" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_B0KI9iWjEeuNT-t1D26kBA" type="7010">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_B0KI9yWjEeuNT-t1D26kBA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_B0KI-CWjEeuNT-t1D26kBA"/>
+    </children>
+    <element xmi:type="ecore:EDataType" href="ToDoListDiag.ecore#//FolderManagerEvent"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0KI9CWjEeuNT-t1D26kBA" x="1163" y="90"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Bb6BASWjEeuNT-t1D26kBA"/>
+  <element xmi:type="ecore:EPackage" href="ToDoListDiag.ecore#/"/>
+</notation:Diagram>
