@@ -19,7 +19,7 @@ We use [HuggingFace](https://huggingface.co/) transformer library to train and e
 Additionally, we use both [Datasets](https://huggingface.co/docs/datasets/) and [Tokenizers](https://huggingface.co/docs/tokenizers/python/latest/) libraries to load and manipulate our datasets.
 
 ## Data acquisition
-We make all our data and models available at the following link https://doi.org/10.5281/zenodo.4673453.
+We make all our data and models available at the following link  https://doi.org/10.5281/zenodo.5579980.
 
 - ```models.7z``` contains our pretrained language model that can be used for inference.
 - ```tokenizers.7z``` contains the tokenizers associated with the language model.
