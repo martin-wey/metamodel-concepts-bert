@@ -66,21 +66,21 @@ python evaluate_probing_global.py
 ```
 To run the evaluation for attributes, change ```--pred_type``` argument to ```attrs```. Similarly, to evaluate associations predictions, change its value to ```assocs```.
 ### RQ2 -- local context sampling
-To reproduce RQ1, use ```evaluate_probing_local.py``` script. 
+To reproduce RQ2, use ```evaluate_probing_local.py``` script. 
 ```sh
 python evaluate_probing_local.py
     --model_path ./models/ecorebert-large \
     --tokenizer_path ./tokenizers/ecorebert-bpe-30k \
-    --test_file ./data/test/test_probing_full_context.txt \
+    --test_file ./data/test/test_probing_local_context.txt \
     --pred_type cls
 ```
 ### RQ3 -- iterative construction
-To reproduce RQ1, use ```evaluate_probing_construction.py``` script. 
+To reproduce RQ3, use ```evaluate_probing_construction.py``` script. 
 ```sh
 python evaluate_probing_construction.py
     --model_path ./models/ecorebert-large \
     --tokenizer_path ./tokenizers/ecorebert-bpe-30k \
-    --test_file ./data/test/test_probing_full_context.txt
+    --test_file ./data/test/test_iterative_construction.txt
 ```
 ### RQ4 -- Use cases
 To run the evaluation for a specific use case, you can use each script associated to RQ1, RQ2 and RQ3 by specifying its corresponding ```--test_file```. 
